@@ -22,4 +22,6 @@ rad.json
 TestResults.xml
 # dependencies
 node_modules/
-.env
+*.env
+backend/*.env
+env
