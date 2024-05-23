@@ -10,14 +10,13 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(
   cors({
-    origin: "http://localhost:5173", // Cambia esto si tu frontend está en otro puerto o dominio
+    origin: "http://localhost:5173",
   })
 );
 
 // Routes
 app.use("/api", routes);
 
-// Manejo de errores global (opcional)
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send({ message: "Error interno del servidor" });
