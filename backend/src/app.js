@@ -1,28 +1,26 @@
-const express = require('express')
-const routes = require('./routes/index');
-const cors = require('cors')
-const morgan = require('morgan');
-const { handleErrors } = require('./middlewares/errorsHandler');
+const express = require("express");
+const routes = require("./router/reuterLike");
+const cors = require("cors");
+const morgan = require("morgan");
 
 const app = express();
 
-// middlewares
+// Middlewares
 app.use(express.json());
+app.use(morgan("dev"));
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Cambia esto si tu frontend está en otro puerto o dominio
+  })
+);
 
-app.use(morgan('dev'))
+// Routes
+app.use("/api", routes);
 
-app.use(cors({
-    origin: 'http://localhost:5173'
-}))
-
-
-// routes
-app.use('/api', routes)
-
-
-// Handle errors
-app.use(handleErrors)
+// Manejo de errores global (opcional)
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send({ message: "Error interno del servidor" });
+});
 
 module.exports = app;
-
-

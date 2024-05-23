@@ -24,4 +24,5 @@ TestResults.xml
 node_modules/
 *.env
 backend/*.env
-env
+envgit 
+.env

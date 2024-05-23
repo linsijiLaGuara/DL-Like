@@ -1,5 +1,6 @@
-const router = require('express').Router()
+const router = require("express").Router();
 
-const routerInvoke = require('./routersInvoque')
+const routerInvoke = require("./routersInvoque/routerIvoke");
 
-router.use('/like', routerInvoke)
+router.use("/like", routerInvoke);
+module.exports = router;

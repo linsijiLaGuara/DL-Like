@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Form from "./components/Form";
 import Post from "./components/Post";
 
-const urlBaseServer = "http://localhost:3000/api";
+const urlBaseServer = "http://localhost:3000/api/";
 
 function App() {
   const [titulo, setTitulo] = useState("");
@@ -12,25 +12,26 @@ function App() {
   const [posts, setPosts] = useState([]);
 
   const getPosts = async () => {
-    const { data: posts } = await axios.get(urlBaseServer + "/like/posts");
-    setPosts([...posts]);
+    const { data } = await axios.get(urlBaseServer + "like/posts");
+    await setPosts([...data.data]);
   };
 
   const agregarPost = async () => {
-    const post = { titulo, url: imgSrc, descripcion };
-    await axios.post(urlBaseServer + "/like/posts", post);
-    getPosts();
+    const post = { titulo, imgSrc, descripcion };
+    await axios.post(urlBaseServer + "like/posts", post)
+    await getPosts();
+    
   };
 
   // este método se utilizará en el siguiente desafío
   const like = async (id) => {
-    await axios.put(urlBaseServer + `/posts/like/${id}`);
+    await axios.put(urlBaseServer + `like/posts/like/${id}`);
     getPosts();
   };
 
   // este método se utilizará en el siguiente desafío
   const eliminarPost = async (id) => {
-    await axios.delete(urlBaseServer + `/posts/${id}`);
+    await axios.delete(urlBaseServer + `like/posts/${id}`);
     getPosts();
   };
 

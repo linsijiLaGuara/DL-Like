@@ -2,8 +2,8 @@ const { likeCollection } = require('../database/models/likesModels')
 
 const add_like_controller = async (req, res, next) => {
     try {
-        const { titulo } = req.body
-        const response = await likeCollection.addLike(titulo)
+        const { titulo,url,descripcion } = req.body
+        const response =  likeCollection.AddLike(titulo,url,descripcion)
         res.send(response)
     }
     catch (error) {
@@ -13,8 +13,7 @@ const add_like_controller = async (req, res, next) => {
 
 const get_like_controller = async (req, res, next) => {
     try {
-        const { titulo } = req.body
-        const response = await likeCollection.getLike(titulo)
+        const response = await likeCollection.getLike()
         res.send(response)
     }
     catch (error) {
